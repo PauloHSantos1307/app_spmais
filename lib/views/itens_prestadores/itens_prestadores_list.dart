@@ -97,33 +97,50 @@ class _ItensPrestadoresState extends State<ItensPrestadores> {
         ),
       );
     } else {
-      return ListView.builder(
-        itemCount: atendimentos.length,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 25,
-            ),
-            child: ListTile(
-              title: Text(
-                "Atendimento: " + atendimentos[index].id_orcamento.toString(),
-                style: TextStyle(fontSize: 18, color: Colors.black),
+      return Container(
+        margin: new EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(10),
+        child: ListView.builder(
+          itemCount: atendimentos.length,
+          itemBuilder: (context, index) {
+            return Container(
+              child: ListTile(
+                title: Text(
+                  "Atendimento: " + atendimentos[index].id_orcamento.toString(),
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                ),
+                subtitle: Text(
+                  "Cliente: " + atendimentos[index].nome_cliente.toString(),
+                  style: TextStyle(fontSize: 14, color: Colors.black),
+                ),
+                trailing: Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      border:
+                          Border.all(width: 4, color: Colors.lightBlueAccent),
+                    ),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          size: 33,
+                          color: Colors.deepPurple.shade500,
+                        ),
+                        onPressed: () async {
+                          await HelperFunctions
+                              .saveIdOrcamentoInSharedPreference(
+                                  atendimentos[index].id_orcamento.toString());
+                          //dispose();
+                          BlocProvider.of<NavigationBloc>(context).add(
+                              NavigationEvents.DetalheAtendimentoPrestador);
+                        }),
+                  ),
+                ),
               ),
-              subtitle: Text(
-                "Cliente: " + atendimentos[index].nome_cliente.toString(),
-                style: TextStyle(fontSize: 14, color: Colors.black),
-              ),
-              trailing: IconButton(
-                  icon: Icon(Icons.arrow_forward),
-                  onPressed: () async {
-                    await HelperFunctions.saveIdOrcamentoInSharedPreference(atendimentos[index].id_orcamento.toString());
-                    //dispose();
-                    BlocProvider.of<NavigationBloc>(context)
-                        .add(NavigationEvents.DetalheAtendimentoPrestador);
-                    }),
-            ),
-          );
-        },
+            );
+          },
+        ),
       );
     }
   }

@@ -259,10 +259,6 @@ class _DetalheAtendimentoPrestadorState
                                   border: Border.all(
                                       width: 2, color: Colors.lightBlueAccent),
                                 ),
-                                /*child: Icon(
-                                  Icons.check_circle_outline,
-                                  color: Colors.blueAccent,
-                                ),*/
                                 child: IconButton(
                                   icon: Icon(
                                     Icons.check,
