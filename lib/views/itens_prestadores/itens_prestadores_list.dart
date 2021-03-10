@@ -90,7 +90,7 @@ class _ItensPrestadoresState extends State<ItensPrestadores> {
                 style: TextStyle(fontSize: 18, color: Colors.black),
               ),
               subtitle: Text(
-                "NENHUM ATENDIMENTO NO MOMENTO",
+                "Nenhum atendimento no momento",
               ),
             );
           },
